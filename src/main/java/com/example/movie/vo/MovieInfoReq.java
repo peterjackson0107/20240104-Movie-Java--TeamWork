@@ -26,6 +26,8 @@ public class MovieInfoReq {
 	private LocalDate onDate;
 	
 	private String onTime;
+	
+	private boolean onSell;
 
 	public int getNumber() {
 		return number;
@@ -105,6 +107,14 @@ public class MovieInfoReq {
 
 	public void setMovieId(String movieId) {
 		this.movieId = movieId;
+	}
+
+	public boolean isOnSell() {
+		return onSell;
+	}
+
+	public void setOnSell(boolean onSell) {
+		this.onSell = onSell;
 	}
 	
 	

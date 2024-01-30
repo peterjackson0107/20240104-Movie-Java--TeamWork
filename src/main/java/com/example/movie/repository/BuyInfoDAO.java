@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.movie.entity.BuyInfo;
 import com.example.movie.entity.MovieInfo;
+import com.example.movie.entity.User;
 
 @Repository
 public interface BuyInfoDAO extends JpaRepository<BuyInfo, Integer>{
@@ -38,19 +39,25 @@ public interface BuyInfoDAO extends JpaRepository<BuyInfo, Integer>{
 //	public List<MovieInfo> findByMovieContainingAndCinemaContainingAndAreaContainingAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
 //			String movie, String cinema, String area, LocalDate startDate, LocalDate endDate);
 	
-	@Transactional
-	@Modifying
-	@Query("update MovieInfo set movie = :movie,cinema = :cinema,area = :area, price = :price,"
-			+ " startDate = :startDate, endDate = :endDate, onDate = :onDate, time = :time "
-			+ " where order = :order")
-	public int updateInfo(
-			@Param("order") int order,
-			@Param("movie") String movie,
-			@Param("cinema") String cinema,
-			@Param("area") String area,
-			@Param("price") int price,
-			@Param("startDate") LocalDate startDate,
-			@Param("endDate") LocalDate endDate,
-			@Param("onDate") LocalDate onDate,
-			@Param("time") String time);
+	
+	@Query(value = "select sum(b.price) as total from buyinfo b where b.movie_id = :movieId and (b.cinema = :cinema or :cinema = '' or :cinema is null)",nativeQuery = true)
+	public Integer movieprofit(
+			@Param("movieId") int movieId,
+			@Param("cinema") String cinema);
+	
+//	@Transactional
+//	@Modifying
+//	@Query("update MovieInfo set movie = :movie,cinema = :cinema,area = :area, price = :price,"
+//			+ " startDate = :startDate, endDate = :endDate, onDate = :onDate, time = :time "
+//			+ " where order = :order")
+//	public int updateInfo(
+//			@Param("order") int order,
+//			@Param("movie") String movie,
+//			@Param("cinema") String cinema,
+//			@Param("area") String area,
+//			@Param("price") int price,
+//			@Param("startDate") LocalDate startDate,
+//			@Param("endDate") LocalDate endDate,
+//			@Param("onDate") LocalDate onDate,
+//			@Param("time") String time);
 }

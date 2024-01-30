@@ -39,7 +39,8 @@ public class MovieInfo {
 	@Column(name = "on_time")
 	private String onTime;
 	
-
+	@Column(name = "on_sell")
+	private boolean onSell;
 
 	public MovieInfo() {
 		super();
@@ -48,7 +49,7 @@ public class MovieInfo {
 
 
 
-	public MovieInfo(int number,String movieId, String movie, String cinema, String area, int price, LocalDate onDate, String onTime) {
+	public MovieInfo(int number,String movieId, String movie, String cinema, String area, int price, LocalDate onDate, String onTime,boolean onSell) {
 		super();
 		this.number = number;
 		this.movieId = movieId;
@@ -58,9 +59,10 @@ public class MovieInfo {
 		this.price = price;
 		this.onDate = onDate;
 		this.onTime = onTime;
+		this.onSell = onSell;
 	}
 	
-	public MovieInfo(String movie, String cinema, String area, int price, LocalDate onDate, String onTime) {
+	public MovieInfo(String movie, String cinema, String area, int price, LocalDate onDate, String onTime,boolean onSell) {
 		super();
 		this.movie = movie;
 		this.cinema = cinema;
@@ -68,9 +70,10 @@ public class MovieInfo {
 		this.price = price;
 		this.onDate = onDate;
 		this.onTime = onTime;
+		this.onSell = onSell;
 	}
 	
-	public MovieInfo(String movieId,String movie, String cinema, String area, int price, LocalDate onDate, String onTime) {
+	public MovieInfo(String movieId,String movie, String cinema, String area, int price, LocalDate onDate, String onTime,boolean onSell) {
 		super();
 		this.movieId = movieId;
 		this.movie = movie;
@@ -79,6 +82,7 @@ public class MovieInfo {
 		this.price = price;
 		this.onDate = onDate;
 		this.onTime = onTime;
+		this.onSell = onSell;
 	}
 
 
@@ -146,5 +150,18 @@ public class MovieInfo {
 		this.movieId = movieId;
 	}
 
+
+
+	public boolean isOnSell() {
+		return onSell;
+	}
+
+
+
+	public void setOnSell(boolean onSell) {
+		this.onSell = onSell;
+	}
+	
+	
 	
 }

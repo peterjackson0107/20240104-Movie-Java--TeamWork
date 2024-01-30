@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BuyInfoReq {
 	
+	private String mail;
+	
 	private int number;
 	
 	private String account;
@@ -26,6 +28,8 @@ public class BuyInfoReq {
 	private String onTime;
 	
 	private String seat;
+	
+	private boolean confirmpay;
 
 	public int getNumber() {
 		return number;
@@ -108,5 +112,22 @@ public class BuyInfoReq {
 		this.movieId = movieId;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public boolean isConfirmpay() {
+		return confirmpay;
+	}
+
+	public void setConfirmpay(boolean confirmpay) {
+		this.confirmpay = confirmpay;
+	}
+	
+	
 	
 }

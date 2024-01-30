@@ -27,6 +27,9 @@ public interface MovieInfoDAO extends JpaRepository<MovieInfo, Integer>{
 	public List<MovieInfo> findByMovieIdContainingAndCinemaContainingAndOnDateBetween(
 			String movieId, String cinema, LocalDate startDate, LocalDate endDate);
 	
+	public List<MovieInfo> findByCinemaAndAreaAndOnDate(
+			String cinema, String area, LocalDate onDate);
+	
 	@Transactional
 	@Modifying
 	@Query("update MovieInfo set movie = :movie,cinema = :cinema,area = :area, price = :price,"

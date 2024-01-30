@@ -64,7 +64,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public UserLoginRes update(int commentIndex,int commentIndexOrder, String movie,int movieID, String commentText,String account) {
-		if(commentIndex ==0 || (commentIndex==0 && commentIndexOrder==0) || StringUtils.hasText(movie) || StringUtils.hasText(commentText) || StringUtils.hasText(account)) {
+		if(commentIndex ==0 || (commentIndex==0 && commentIndexOrder==0) || !StringUtils.hasText(movie) || !StringUtils.hasText(commentText) || !StringUtils.hasText(account)) {
 			return new UserLoginRes(RtnCode.PARAM_ERROR.getCode(),RtnCode.PARAM_ERROR.getMessage());
 		}
 		Optional<Comment> op = commentDao.findByCommentIndexAndCommentIndexIndexAndMovieID(commentIndex,commentIndexOrder,movieID);

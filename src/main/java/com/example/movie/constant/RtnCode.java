@@ -2,6 +2,7 @@ package com.example.movie.constant;
 
 public enum RtnCode {
 	SUCCESSFUL(200,"Successful!"),//
+	SUCCESSFUL_ADMIN_LOGIN(201,"Successful Admin login!"),
 	PARAM_ERROR(400,"Param error!"),//
 	ACCOUNT_NOT_FOUND(404,"Account not found!"),
 	PASSWORD_NOT_FIT(400,"password not fit!"),
@@ -30,6 +31,7 @@ public enum RtnCode {
 	ACCOUNT_EXISTED(400,"Account existed!"),
 	ACCOUNT_ALREADY_VERIFIED(400,"Account aleardy verified"),
 	ACCOUNT_NOT_VERIFY(400,"Account not verify"),
+	TICKET_IS_PAID(400,"Ticket is paid"),
 	VERIFICATION_CODE_INCORRECT(400,"Code incorrect");
 	
 	private int code;

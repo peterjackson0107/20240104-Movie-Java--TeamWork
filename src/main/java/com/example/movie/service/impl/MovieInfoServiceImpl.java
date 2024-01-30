@@ -24,7 +24,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
 
     @Override
     public UserLoginRes create(String movieId,String movie, String cinema, String area, int price,
-			LocalDate onDate, String time) {
+			LocalDate onDate, String time,boolean onSell) {
         if (!StringUtils.hasText(movieId)) {
             return new UserLoginRes(RtnCode.CHECK_MOVIE_INPUT.getCode(),RtnCode.CHECK_MOVIE_INPUT.getMessage());
         }
@@ -47,14 +47,14 @@ public class MovieInfoServiceImpl implements MovieInfoService {
             return new UserLoginRes(RtnCode.CHECK_ONTIME_INPUT.getCode(),RtnCode.CHECK_ONTIME_INPUT.getMessage());
         }
 
-        movieInfoDao.save(new MovieInfo(movieId,movie,cinema,area,price,onDate,time));
+        movieInfoDao.save(new MovieInfo(movieId,movie,cinema,area,price,onDate,time,onSell));
         
         return new UserLoginRes(RtnCode.SUCCESSFUL.getCode(),RtnCode.SUCCESSFUL.getMessage());
     }
     
 	@Override
 	public UserLoginRes update(int number,String movieId,String movie, String cinema, String area, int price,
-			LocalDate onDate, String time) {
+			LocalDate onDate, String time,boolean onSell) {
         if (!StringUtils.hasText(movie)) {
             return new UserLoginRes(RtnCode.CHECK_MOVIE_INPUT.getCode(),RtnCode.CHECK_MOVIE_INPUT.getMessage());
         }
@@ -82,6 +82,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
 			movieinfo.setPrice(price);
 			movieinfo.setOnDate(onDate);
 			movieinfo.setOnTime(time);
+			movieinfo.setOnSell(onSell);
 			movieInfoDao.save(movieinfo);
 //			movieInfoDao.updateInfo(order,movie,cinema,area,price,startDate,endDate,onDate,time);
 		} catch (Exception e) {

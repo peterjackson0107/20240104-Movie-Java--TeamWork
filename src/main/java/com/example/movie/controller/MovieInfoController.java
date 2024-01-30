@@ -25,13 +25,13 @@ public class MovieInfoController {
 	@PostMapping(value = "movie/movieinfo/create")
 	public UserLoginRes create(@RequestBody MovieInfoReq req) {
 		return movieInfoService.create(req.getMovieId(),req.getMovie(),req.getCinema(),req.getArea(),req.getPrice(),
-				req.getOnDate(),req.getOnTime());
+				req.getOnDate(),req.getOnTime(),req.isOnSell());
 	}
 	
 	@PostMapping(value = "movie/movieinfo/update")
 	public UserLoginRes update(@RequestBody MovieInfoReq req) {
 				return movieInfoService.update(req.getNumber(),req.getMovieId(),req.getMovie(),req.getCinema(),req.getArea(),
-						req.getPrice(),req.getOnDate(),req.getOnTime());
+						req.getPrice(),req.getOnDate(),req.getOnTime(),req.isOnSell());
 	}
 	
 	@PostMapping(value = "movie/movieinfo/delete")
