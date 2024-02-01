@@ -77,12 +77,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserLoginRes create(String account, String pwd, String email,int phone, String name) {
+    public UserLoginRes create(String account, String pwd, String email,String phone, String name) {
     	if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
             return new UserLoginRes(RtnCode.PARAM_ERROR.getCode(),RtnCode.PARAM_ERROR.getMessage());
         }
         if (userDao.existsById(account)) {
             return new UserLoginRes(RtnCode.ACCOUNT_EXISTED.getCode(),RtnCode.ACCOUNT_EXISTED.getMessage());
+        }
+        if(userDao.existsByEmail(email)) {
+        	return new UserLoginRes(RtnCode.SAME_EMAIL_EXSISTED.getCode(),RtnCode.SAME_EMAIL_EXSISTED.getMessage());
         }
         String encodedPwd = encoder.encode(pwd);
 
@@ -108,7 +111,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public UserLoginRes createAdmi(String account, String pwd, String email,int phone, String name) {
+    public UserLoginRes createAdmi(String account, String pwd, String email,String phone, String name) {
     	if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
             return new UserLoginRes(RtnCode.PARAM_ERROR.getCode(),RtnCode.PARAM_ERROR.getMessage());
         }
@@ -182,7 +185,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public UserLoginRes update(String account, String pwd, String email, int phone, String name) {
+	public UserLoginRes update(String account, String pwd, String email, String phone, String name) {
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
             return new UserLoginRes(RtnCode.PARAM_ERROR.getCode(),RtnCode.PARAM_ERROR.getMessage());
         }
@@ -194,6 +197,9 @@ public class UserServiceImpl implements UserService {
         if (!encoder.matches(pwd, user.getPwd())) {
         	return new UserLoginRes(RtnCode.ACCOUNT_NOT_FOUND.getCode(),RtnCode.ACCOUNT_NOT_FOUND.getMessage());
         } else {
+            if(!user.getEmail().equals(email) && userDao.existsByEmail(email)) {
+            	return new UserLoginRes(RtnCode.SAME_EMAIL_EXSISTED.getCode(),RtnCode.SAME_EMAIL_EXSISTED.getMessage());
+            } 
         	user.setName(name);
         	user.setEmail(email);
         	user.setPhone(phone);
@@ -239,7 +245,7 @@ public class UserServiceImpl implements UserService {
     	if (!StringUtils.hasText(email)) {
             return new UserLoginRes(RtnCode.PARAM_ERROR.getCode(),RtnCode.PARAM_ERROR.getMessage());
         }
-    	Optional<User> op = userDao.findAllByEmail(email);
+    	Optional<User> op = userDao.findByEmail(email);
         if (op.isEmpty()) {
             return new UserLoginRes(RtnCode.ACCOUNT_NOT_FOUND.getCode(), RtnCode.ACCOUNT_NOT_FOUND.getMessage());
         }
@@ -266,7 +272,7 @@ public class UserServiceImpl implements UserService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("starlightmoviecinema@gmail.com");
             message.setTo(userEmail);
-            message.setSubject("修改驗證碼");
+            message.setSubject("重新驗證帳號");
             String emailContent = "你的帳號為：" + account + "，" + "你的驗證碼為：" + verificationCode;
             message.setText(emailContent);
 

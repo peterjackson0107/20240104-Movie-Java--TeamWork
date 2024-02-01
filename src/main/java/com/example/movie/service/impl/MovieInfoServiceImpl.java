@@ -112,7 +112,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
 		startDate = startDate== null ? LocalDate.of(1970,01,01) : startDate;
 		endDate = endDate == null ? LocalDate.of(2099,12,31) : endDate;
 		List<MovieInfo> res = new ArrayList<>();
-			res = movieInfoDao.findByMovieIdContainingAndCinemaContainingAndOnDateBetween(movieId,cinema,startDate,endDate);
+			res = movieInfoDao.findByMovieIdContainingAndMovieContainingAndCinemaContainingAndOnDateBetween(movieId,movie,cinema,startDate,endDate);
 				return new MovieInfoGetRes(RtnCode.SUCCESSFUL.getCode(),
 						RtnCode.SUCCESSFUL.getMessage(),res);
 

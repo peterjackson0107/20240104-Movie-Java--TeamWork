@@ -9,13 +9,13 @@ public interface UserService {
 	
 	public UserLoginGetRes logincheck(String account);
 	
-	public UserLoginRes create(String account,String pwd,String email,int phone, String name);
+	public UserLoginRes create(String account,String pwd,String email,String phone, String name);
 	
-	public UserLoginRes createAdmi(String account,String pwd,String email,int phone, String name);
+	public UserLoginRes createAdmi(String account,String pwd,String email,String phone, String name);
 	
 	public UserLoginRes updatepwd(String account,String pwd,String newPwd);
 	
-	public UserLoginRes update(String account,String pwd,String email,int phone, String name);
+	public UserLoginRes update(String account,String pwd,String email,String phone, String name);
 	
 	public UserLoginRes search(String account);
 	

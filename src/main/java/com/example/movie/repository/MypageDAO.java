@@ -14,6 +14,8 @@ public interface MypageDAO extends JpaRepository<Mypage, String>{
 	
 	public Mypage findByAccount(String account);
 	
+	public boolean existsByAccount(String account);
+	
 	public @NonNull List<Mypage> findAll();
 
 	

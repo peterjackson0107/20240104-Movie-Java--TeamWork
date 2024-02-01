@@ -26,6 +26,9 @@ public class MypageServiceImpl implements MypageService {
         if (!StringUtils.hasText(account)) {
             return new UserLoginRes(RtnCode.ACCOUNT_NOT_FOUND.getCode(),RtnCode.ACCOUNT_NOT_FOUND.getMessage());
         }
+        if(mypageDao.existsByAccount(account)) {
+        	update(account,favorit,watchList,accountMovieList,favoritComment);
+        }
 
         mypageDao.save(new Mypage(account, favorit, watchList, accountMovieList,favoritComment));
 

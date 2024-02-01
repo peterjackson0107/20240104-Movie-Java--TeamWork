@@ -20,7 +20,9 @@ public interface UserDAO extends JpaRepository<User, String>{
 	
 	public Optional<User> findByAccount(String account);
 	
-	public Optional<User> findAllByEmail(String email);
+	public Optional<User> findByEmail(String email);
+	
+	public boolean existsByEmail(String email);
 	
 	@Query(value = "SELECT email FROM user WHERE account = :account", nativeQuery = true)
     public String findUserEmailByAccount(@Param("account") String account);

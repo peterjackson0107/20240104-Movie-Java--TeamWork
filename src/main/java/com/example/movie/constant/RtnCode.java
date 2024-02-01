@@ -6,6 +6,7 @@ public enum RtnCode {
 	PARAM_ERROR(400,"Param error!"),//
 	ACCOUNT_NOT_FOUND(404,"Account not found!"),
 	PASSWORD_NOT_FIT(400,"password not fit!"),
+	SAME_EMAIL_EXSISTED(402,"Same email exsisted!"),
 	DATE_FORMAT_ERROR(400,"Date format error!"),
 	PAGE_NOT_FOUND(400,"Page not found!"),
 	PAGE_CANNOT_BE_UPDATED(400,"Page cannot updated!"),
@@ -28,7 +29,7 @@ public enum RtnCode {
 	CHECK_SEAT_INPUT(400,"Check seat input"),
 	DUPLICATE_SEAT(400,"Duplicate seat!"),
 	MOVIE_INFO_SAVE_ERROR(400,"Movie info save error"),
-	ACCOUNT_EXISTED(400,"Account existed!"),
+	ACCOUNT_EXISTED(401,"Account existed!"),
 	ACCOUNT_ALREADY_VERIFIED(400,"Account aleardy verified"),
 	ACCOUNT_NOT_VERIFY(400,"Account not verify"),
 	TICKET_IS_PAID(400,"Ticket is paid"),

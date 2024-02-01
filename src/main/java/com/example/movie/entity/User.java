@@ -25,7 +25,7 @@ public class User {
 	private String email;
 	
 	@Column(name = "phone")
-	private int phone;
+	private String phone;
 	
 	@Column(name = "verify")
 	private boolean verify;
@@ -41,7 +41,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String name, String account, String pwd, String email, int phone, boolean verify, String verifyCode,boolean adminConfirm) {
+	public User(String name, String account, String pwd, String email, String phone, boolean verify, String verifyCode,boolean adminConfirm) {
 		super();
 		this.name = name;
 		this.account = account;
@@ -85,11 +85,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
